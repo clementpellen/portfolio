@@ -1,6 +1,6 @@
 <template>
     <div class="portfolio-content" 
-    :class="{'clicked': clicked, 'close': close}" 
+    :class="{'close': close, 'open': open}" 
     @click="closePortfolio()"
     />
 </template>
@@ -12,29 +12,32 @@ export default defineComponent({
     name: 'PortfolioContent',
     data() {
         return {
-            clicked: false,
-            close: false
+            close: false,
+            open: true,
         }
     },
     methods: {
         closePortfolio() {
-            this.clicked = true;
-            setTimeout(() => {
-                this.close = true;
-            }, 400);
+            this.close = true;
             setTimeout(() => {
                 this.$emit('portfolio-clicked');
             }, 400 * 2);
         }
     },
+    created() {
+        setTimeout(() => {
+            this.open = false;
+        }, 800);
+    },
+    
 });
 </script>
 
 <style scoped>
 .portfolio-content {
     background-color: var(--main-dark);
-    width: 90vw;
-    height: 90vh;
+    width: var(--portfolio-width);
+    height: var(--portfolio-height);
     border-radius: 30px;
 
     position: absolute;
@@ -44,24 +47,37 @@ export default defineComponent({
     z-index: 2;
 
     cursor: pointer;
-
-    transition: 
-        all calc(var(--transition-standard) / 1) ease-in-out;
-}
-
-.clicked {
-    width: var(--island-width);
-    height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
-    top: calc(50vh + var(--island-height) + 10px);
-    left: calc(50vw - var(--island-width) / 2);
 }
 
 .close {
-    top: calc(50vh - var(--island-height) / 2);
-    left: calc(50vw - var(--island-width) / 2);
-    width: var(--island-width);
-    height: var(--island-height);
+    animation: close var(--animation-standard) forwards;
+}
 
-    z-index: 0;
+.open {
+    animation: close var(--animation-standard) reverse;
+}
+
+@keyframes close {
+    0% {
+        width: 90vw;
+        height: 90vh;
+        top: calc(50vh - var(--portfolio-height) / 2);
+        left: calc(50vw - var(--portfolio-width) / 2);
+        z-index: 2;
+    }
+    50% {
+        width: var(--island-width);
+        height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
+        top: calc(50vh + var(--island-height) + 10px);
+        left: calc(50vw - var(--island-width) / 2);
+        z-index: 1;
+    }
+    100% {
+        width: var(--island-width);
+        height: var(--island-height);
+        top: calc(50vh - var(--island-height) / 2);
+        left: calc(50vw - var(--island-width) / 2);
+        z-index: 0;
+    }
 }
 </style>

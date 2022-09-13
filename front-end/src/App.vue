@@ -57,6 +57,7 @@ export default defineComponent({
   --portfolio-height: 90vh;
 
   --transition-standard: 0.4s;
+  --animation-standard: 0.8s;
 }
 
 body {
