@@ -13,18 +13,7 @@ export default defineComponent({
     name: 'DynamicIsland',
     components: {
         RoundLoader
-    },
-    props: {
-        impacted: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            getImpact: false
-        }
-    },
+    }
 });
 </script>
 
@@ -43,6 +32,8 @@ export default defineComponent({
     top: calc(50vh - var(--island-height) / 2);
     left: calc(50vw - var(--island-width) / 2);
 
+    z-index: 1;
+
     cursor: pointer;
 
     transition: 
@@ -53,16 +44,6 @@ export default defineComponent({
     height: calc(var(--island-height) * 1.2);
     top: calc(50vh - (var(--island-height) * 1.2) / 2);
 }
-
-/* .dynamic-island.impacted {
-    height: calc(var(--island-height) * 1.2);
-    top: calc(50vh - (var(--island-height) * 1.2) / 2);
-}
-
-.dynamic-island.getImpact {
-    height: var(--island-height);
-    top: calc(50vh - var(--island-height) / 2);
-} */
 
 .icon {
     margin: 0 8px;

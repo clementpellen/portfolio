@@ -1,7 +1,7 @@
 <template>
     <div class="portfolio-content" 
     :class="{'clicked': clicked, 'close': close}" 
-    @click="onPortfolioClick()"
+    @click="closePortfolio()"
     />
 </template>
 
@@ -17,7 +17,7 @@ export default defineComponent({
         }
     },
     methods: {
-        onPortfolioClick() {
+        closePortfolio() {
             this.clicked = true;
             setTimeout(() => {
                 this.close = true;
@@ -41,6 +41,8 @@ export default defineComponent({
     top: calc(50vh - var(--portfolio-height) / 2);
     left: calc(50vw - var(--portfolio-width) / 2);
 
+    z-index: 2;
+
     cursor: pointer;
 
     transition: 
@@ -59,5 +61,7 @@ export default defineComponent({
     left: calc(50vw - var(--island-width) / 2);
     width: var(--island-width);
     height: var(--island-height);
+
+    z-index: 0;
 }
 </style>
