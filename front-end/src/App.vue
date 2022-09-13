@@ -1,7 +1,6 @@
 <template>
   <DynamicIsland 
-  class="dynamic-island-container"
-  :class="{'impact': dynamicIslandImpact, 'relax': dynamicIslandRelax}"
+  :impact="dynamicIslandImpact" 
   @click="displayPortfolio = true" 
   />
   <PortfolioContent 
@@ -25,7 +24,6 @@ export default defineComponent({
     return {
       displayPortfolio: false,
       dynamicIslandImpact: false,
-      dynamicIslandRelax: false
     }
   },
   methods: {
@@ -34,13 +32,7 @@ export default defineComponent({
       this.displayPortfolio = false;
       setTimeout(() => {
         this.dynamicIslandImpact = false;
-      }, 400);
-      setTimeout(() => {
-        this.dynamicIslandRelax = true;
-      }, 500);
-      setTimeout(() => {
-        this.dynamicIslandRelax = false;
-      }, 400 * 2);
+      }, 800 * 2);
     }
   },
 });
@@ -77,16 +69,5 @@ h1, h2, h3, h4, h5, h6, span {
   margin: 0;
   padding: 0;
   font-family: Arial;
-}
-
-.dynamic-island-container.impact {
-    height: calc(var(--island-height) * 1.05);
-    top: calc(50vh - (var(--island-height) * 1.25) / 2);
-}
-
-.dynamic-island-container.relax {
-    width: calc(var(--island-width) * 1.03);
-    left: calc(50vw - (var(--island-width) * 1.03) / 2);
-    height: calc(var(--island-height) * 0.95);
 }
 </style>
