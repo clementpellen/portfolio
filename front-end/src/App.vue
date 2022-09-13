@@ -5,7 +5,8 @@
   />
   <PortfolioContent 
   v-if="displayPortfolio" 
-  @portfolio-clicked="closePortfolio()" 
+  @portfolio-clicked="launchDynamicIslandImpact()" 
+  @close-portfolio="displayPortfolio = false"
   />
 </template>
 
@@ -27,13 +28,14 @@ export default defineComponent({
     }
   },
   methods: {
-    closePortfolio() {
-      this.dynamicIslandImpact = true;
-      this.displayPortfolio = false;
+    launchDynamicIslandImpact() {
       setTimeout(() => {
-        this.dynamicIslandImpact = false;
-      }, 800 * 2);
-    }
+        this.dynamicIslandImpact = true;
+        setTimeout(() => {
+          this.dynamicIslandImpact = false;
+        }, 800 * 2);
+      }, 700);
+    },
   },
 });
 </script>

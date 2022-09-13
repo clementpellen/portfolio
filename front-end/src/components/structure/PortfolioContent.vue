@@ -1,7 +1,7 @@
 <template>
     <div class="portfolio-content" 
     :class="{'close': close, 'open': open}" 
-    @click="closePortfolio()"
+    @click="portfolioClick = true"
     />
 </template>
 
@@ -14,14 +14,27 @@ export default defineComponent({
         return {
             close: false,
             open: true,
+            portfolioClick: false,
         }
     },
     methods: {
         closePortfolio() {
             this.close = true;
+            this.$emit('portfolio-clicked');
             setTimeout(() => {
-                this.$emit('portfolio-clicked');
+                this.$emit('close-portfolio');
             }, 400 * 2);
+        },
+        getBodyClick() {
+            const body = document.querySelector('body');
+            body.addEventListener('click', () => {
+                if (!this.portfolioClick && !this.open) {
+                    this.closePortfolio();
+                }
+                else {
+                    this.portfolioClick = false;
+                }
+            });
         }
     },
     created() {
@@ -29,7 +42,9 @@ export default defineComponent({
             this.open = false;
         }, 800);
     },
-    
+    mounted() {
+        this.getBodyClick();
+    }
 });
 </script>
 
@@ -45,8 +60,6 @@ export default defineComponent({
     left: calc(50vw - var(--portfolio-width) / 2);
 
     z-index: 2;
-
-    cursor: pointer;
 }
 
 .close {
