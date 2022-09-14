@@ -1,42 +1,16 @@
 <template>
-  <DynamicIsland 
-  :impact="dynamicIslandImpact" 
-  @click="displayPortfolio = true" 
-  />
-  <PortfolioContent 
-  v-if="displayPortfolio" 
-  @portfolio-clicked="launchDynamicIslandImpact()" 
-  @close-portfolio="displayPortfolio = false"
-  />
+    <HomePage />
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import DynamicIsland from '@/components/buttons/DynamicIsland.vue';
-import PortfolioContent from '@/components/structure/PortfolioContent.vue';
+import HomePage from '@/components/structure/HomePage.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    DynamicIsland,
-    PortfolioContent
-  },
-  data() {
-    return {
-      displayPortfolio: false,
-      dynamicIslandImpact: false,
-    }
-  },
-  methods: {
-    launchDynamicIslandImpact() {
-      setTimeout(() => {
-        this.dynamicIslandImpact = true;
-        setTimeout(() => {
-          this.dynamicIslandImpact = false;
-        }, 800 * 2);
-      }, 700);
-    },
-  },
+    HomePage
+  }
 });
 </script>
 
@@ -63,8 +37,6 @@ body {
   width: 100vw;
   height: 100vh;
   font-size: 1em;
-
-  background-color: rgb(251, 203, 113);
 }
 
 h1, h2, h3, h4, h5, h6, span {
