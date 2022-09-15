@@ -98,5 +98,25 @@ export default defineComponent({
 
 .icon {
     margin: 0 8px;
+
+    animation: icon 30s 2s infinite;
+}
+
+@keyframes icon {
+    0% {
+        transform: translateY(0);
+    }
+    1% {
+        transform: translateY(-5px);
+    }
+    3% {
+        transform: translateY(5px);
+    }
+    4% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 </style>
