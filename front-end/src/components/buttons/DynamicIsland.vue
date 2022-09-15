@@ -54,7 +54,7 @@ export default defineComponent({
     top: calc(50vh - var(--island-height) / 2);
     left: calc(50vw - var(--island-width) / 2);
 
-    z-index: 1;
+    z-index: 2;
 
     cursor: pointer;
 

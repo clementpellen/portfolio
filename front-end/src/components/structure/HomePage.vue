@@ -9,7 +9,7 @@
         @portfolio-clicked="launchDynamicIslandImpact()"
         @close-portfolio="displayPortfolio = false" 
         />
-        <div class="background" :class="{'blur': displayPortfolio}" />
+        <img src="@/assets/img/apple-screen.jpg" class="background" :class="{'blur': displayPortfolio}" />
     </div>
 </template>
 
@@ -52,14 +52,13 @@ export default defineComponent({
 .background {
     width: 100%;
     height: 100%;
-    /* background: linear-gradient(90deg, rgba(251, 203, 113, 1) 50%, rgba(255, 0, 0, 1) 50%); */
     background: rgb(251,203,113);
-    z-index: -1;
+    z-index: 0;
 
-    /* transition: filter calc(var(--animation-standard) * 2) ease-in-out; */
+    transition: filter var(--animation-standard) ease-in-out;
 }
 
 .blur {
-    /* filter: blur(10px);  */
+    filter: blur(10px);
 }
 </style>

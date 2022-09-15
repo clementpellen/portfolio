@@ -59,7 +59,7 @@ export default defineComponent({
     top: calc(50vh - var(--portfolio-height) / 2);
     left: calc(50vw - var(--portfolio-width) / 2);
 
-    z-index: 2;
+    z-index: 3;
 }
 
 .close {
@@ -76,21 +76,21 @@ export default defineComponent({
         height: 90vh;
         top: calc(50vh - var(--portfolio-height) / 2);
         left: calc(50vw - var(--portfolio-width) / 2);
-        z-index: 2;
+        z-index: 3;
     }
     50% {
         width: var(--island-width);
         height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
         top: calc(50vh + var(--island-height) + 10px);
         left: calc(50vw - var(--island-width) / 2);
-        z-index: 1;
+        z-index: 2;
     }
     100% {
         width: var(--island-width);
         height: var(--island-height);
         top: calc(50vh - var(--island-height) / 2);
         left: calc(50vw - var(--island-width) / 2);
-        z-index: 0;
+        z-index: 1;
     }
 }
 </style>
