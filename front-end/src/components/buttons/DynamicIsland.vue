@@ -3,7 +3,7 @@
     :class="{'click': click, 'impact': impact}"
     @click="onClick()"
     >
-        <span class="icon">👇</span>
+        <span class="icon" :class="{'move': indication}">👇</span>
         <RoundLoader />
     </div>
 </template>
@@ -20,6 +20,7 @@ export default defineComponent({
     data() {
         return {
             click: false,
+            indication: true,
         }
     },
     props: {
@@ -34,6 +35,7 @@ export default defineComponent({
             setTimeout(() => {
                 this.click = false;
             }, 400 * 2);
+            this.indication = false;
         }
     },
 });
@@ -98,11 +100,13 @@ export default defineComponent({
 
 .icon {
     margin: 0 8px;
-
-    animation: icon 30s 2s infinite;
 }
 
-@keyframes icon {
+.icon.move {
+    animation: move 30s 2s infinite;
+}
+
+@keyframes move {
     0% {
         transform: translateY(0);
     }
