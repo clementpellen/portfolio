@@ -50,12 +50,12 @@ export default defineComponent({
 }
 
 .background {
-    width: 100%;
     height: 100%;
-    background: rgb(251,203,113);
-    z-index: 0;
-
+    width: 100%;
+    display: block;
+    background: rgb(251, 203, 113);
     transition: filter var(--animation-standard) ease-in-out;
+    z-index: 0;
 }
 
 .blur {
