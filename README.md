@@ -53,3 +53,30 @@ Add notes about how to use the system.
     ) - Idea & Initial work
 
 See also the list of contributors who participated in this project.
+
+
+
+# front-end
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
