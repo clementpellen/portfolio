@@ -1,8 +1,8 @@
 <template>
-    <div class="round-loader"
-        :class="{'green': buffer >= 15, 'red': buffer < 15}"
+    <div class="progress-circle progress-circle-container"
+        :class="{'is-satisfying': buffer >= 15, 'is-bad': buffer < 15}"
         >
-        <span class="loader-value">{{ buffer }}</span>
+        <span class="progress-value progress-value-position flex-center">{{ buffer }}</span>
     </div>
 </template>
 
@@ -10,7 +10,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'RoundLoader',
+    name: 'ProgressCircle',
     data() {
         return {
             value: 76,
@@ -18,18 +18,18 @@ export default defineComponent({
         }
     },
     methods: {
-        updateLoader() {
-            const loader = document.querySelector('.round-loader');
+        updateProgress() {
+            const progress_circle = document.querySelector('.progress-circle');
 
-            var loading = setInterval(() => {
+            var progressing = setInterval(() => {
                 if (this.buffer < 20) {
-                    loader.style.background = `conic-gradient(
+                    progress_circle.style.background = `conic-gradient(
                         #fe9898 0% ${this.buffer}%, 
                         #333333 ${this.buffer}% 100%
                     )`;
                 }
                 else if(this.buffer >= 20) {
-                    loader.style.background = `conic-gradient(
+                    progress_circle.style.background = `conic-gradient(
                         #83fd83 0% ${this.buffer}%, 
                         #333333 ${this.buffer}% 100%
                     )`;
@@ -39,40 +39,40 @@ export default defineComponent({
                     ++this.buffer;
                 }
                 else {
-                    clearInterval(loading);
+                    clearInterval(progressing);
                 }
 
             }, 20);
         }
     },
     mounted() {
-        this.updateLoader();
+        this.updateProgress();
     }
 });
 </script>
 
 <style scoped>
-.round-loader {
+.progress-circle {
+    box-sizing: border-box;
     width: calc(var(--island-height) / 1.4);
     height: calc(var(--island-height) / 1.4);
-    position: relative;
     border-radius: 50%;
-
-    margin: 0 8px;
 }
 
-.green {
+.progress-circle-container {
+    position: relative;
+}
+
+.is-satisfying {
     color: #83fd83;
 }
 
-.red {
+.is-bad {
     /* background: conic-gradient(#fe9898 0% 15%, #AAAAAA 15% 100%); */
     color: #fe9898;
 }
 
-.loader-value {
-    margin: 8%;
-
+.progress-value {
     font-size: 0.8rem;
     font-weight: light;
 
@@ -81,9 +81,9 @@ export default defineComponent({
     width: 85%;
     height: 85%;
     border-radius: 100%;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.progress-value-position {
+    margin: 8%;
 }
 </style>

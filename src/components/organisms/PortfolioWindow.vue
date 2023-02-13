@@ -1,15 +1,30 @@
 <template>
-    <div class="portfolio-content" 
+    <div class="portfolio-window portfolio-window-position flex-column radius" 
     :class="{'close': close, 'open': open}" 
     @click="portfolioClick = true"
-    />
+    >
+        <ProgressHeader />
+        <main>
+            <ProjectsGallery />
+            <ExpandedProject />
+        </main>
+    </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
+import ProgressHeader from '@/components/molecules/ProgressHeader.vue';
+import ProjectsGallery from '@/components/organisms/ProjectsGallery.vue'
+import ExpandedProject from '@/components/molecules/ExpandedProject.vue'
+
 export default defineComponent({
-    name: 'PortfolioContent',
+    name: 'PortfolioWindow',
+    components: {
+        ProgressHeader,
+        ProjectsGallery,
+        ExpandedProject
+    },
     data() {
         return {
             close: false,
@@ -48,27 +63,38 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.portfolio-content {
+<style scoped lang="scss">
+.portfolio-window {
     background-color: var(--main-dark);
+    box-sizing: border-box;
     width: var(--portfolio-width);
     height: var(--portfolio-height);
-    border-radius: 30px;
+    overflow: hidden;
+    padding: 15px 30px 30px 30px;
+    
+    main {
+        margin-top: 20px;
+        width: 100%;
+        flex: 1;
+        background-color: red;
+    }
+}
 
+.portfolio-window-position {
     position: absolute;
     top: calc(50vh - var(--portfolio-height) / 2);
     left: calc(50vw - var(--portfolio-width) / 2);
-
     z-index: 3;
 }
 
-.close {
+.portfolio-window.close {
     animation: close var(--animation-standard) forwards;
 }
 
-.open {
+.portfolio-window.open {
     animation: close var(--animation-standard) reverse;
 }
+
 
 @keyframes close {
     0% {

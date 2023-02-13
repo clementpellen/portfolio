@@ -1,21 +1,21 @@
 <template>
-    <div class="dynamic-island" 
+    <div class="dynamic-island dynamic-island-position dynamic-island-container radius" 
     :class="{'click': click, 'impact': impact}"
     @click="onClick()"
     >
         <span class="icon" :class="{'move': indication}">👇</span>
-        <RoundLoader />
+        <ProgressCircle />
     </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import RoundLoader from '@/components/indicators/RoundLoader.vue';
+import ProgressCircle from './ProgressCircle.vue';
 
 export default defineComponent({
     name: 'DynamicIsland',
     components: {
-        RoundLoader
+        ProgressCircle
     },
     data() {
         return {
@@ -41,27 +41,35 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .dynamic-island {
     background-color: var(--main-dark);
     width: var(--island-width);
     height: var(--island-height);
-    border-radius: 30px;
+    
+    cursor: pointer;
+    
+    transition: 
+    all var(--transition-standard) ease-in-out;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    .icon.move {
+        animation: move 30s 2s infinite;
+    }
+}
 
+.dynamic-island-position {
     position: absolute;
     top: calc(50vh - var(--island-height) / 2);
     left: calc(50vw - var(--island-width) / 2);
-
     z-index: 2;
+}
 
-    cursor: pointer;
-
-    transition: 
-        all var(--transition-standard) ease-in-out;
+.dynamic-island-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
 }
 
 .dynamic-island:hover {
@@ -96,14 +104,6 @@ export default defineComponent({
     100% {
         height: var(--island-height);
     }
-}
-
-.icon {
-    margin: 0 8px;
-}
-
-.icon.move {
-    animation: move 30s 2s infinite;
 }
 
 @keyframes move {
