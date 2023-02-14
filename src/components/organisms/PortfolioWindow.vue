@@ -68,6 +68,7 @@ export default defineComponent({
     background-color: var(--main-dark);
     box-sizing: border-box;
     width: var(--portfolio-width);
+    max-width: 1000px;
     height: var(--portfolio-height);
     overflow: hidden;
     padding: 15px 30px 30px 30px;
@@ -83,7 +84,6 @@ export default defineComponent({
 .portfolio-window-position {
     position: absolute;
     top: calc(50vh - var(--portfolio-height) / 2);
-    left: calc(50vw - var(--portfolio-width) / 2);
     z-index: 3;
 }
 
@@ -95,7 +95,6 @@ export default defineComponent({
     animation: close var(--animation-standard) reverse;
 }
 
-
 @keyframes close {
     0% {
         width: 90vw;
@@ -105,18 +104,56 @@ export default defineComponent({
         z-index: 3;
     }
     50% {
-        width: var(--island-width);
+        width: calc(var(--island-width) * 1.05);
         height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
         top: calc(50vh + var(--island-height) + 10px);
         left: calc(50vw - var(--island-width) / 2);
         z-index: 2;
     }
     100% {
-        width: var(--island-width);
+        width: calc(var(--island-width) * 1.05);
         height: var(--island-height);
         top: calc(50vh - var(--island-height) / 2);
         left: calc(50vw - var(--island-width) / 2);
         z-index: 1;
+    }
+}
+
+@media (max-width: 1200px) {
+    .portfolio-window-position {
+        left: calc(50vw - var(--portfolio-width) / 2);
+    }
+}
+
+@media (min-width: 1200px) {
+    .portfolio-window-position {
+        left: calc(50vw - 1000px / 2);
+    }
+
+    @keyframes close {
+        0% {
+            width: 1000px;
+            height: 90vh;
+            top: calc(50vh - var(--portfolio-height) / 2);
+            left: calc(50vw - 1000px / 2);
+            z-index: 3;
+        }
+
+        50% {
+            width: calc(var(--island-width) * 1.05);
+            height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
+            top: calc(50vh + var(--island-height) + 10px);
+            left: calc(50vw - var(--island-width) / 2);
+            z-index: 2;
+        }
+
+        100% {
+            width: calc(var(--island-width) * 1.05);
+            height: var(--island-height);
+            top: calc(50vh - var(--island-height) / 2);
+            left: calc(50vw - var(--island-width) / 2);
+            z-index: 1;
+        }
     }
 }
 </style>
