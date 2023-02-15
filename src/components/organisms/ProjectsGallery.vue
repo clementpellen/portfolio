@@ -1,10 +1,6 @@
 <template>
     <div class="projects-gallery">
-        <ProjectPreview />
-        <ProjectPreview />
-        <ProjectPreview />
-        <ProjectPreview />
-        <ProjectPreview />
+        <ProjectPreview  v-for="item in 5" :key="item"/>
     </div>
 </template>
 

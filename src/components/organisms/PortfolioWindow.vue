@@ -83,15 +83,8 @@ export default defineComponent({
 
         * {
             flex: 1;
-        }
-        
-        div:first-child {
-            height: 550px;
-        }
-    
-        div:nth-child(2) {
-            height: 100%;
-        }
+            height: 543px;
+        }   
     }
 
 }
@@ -134,14 +127,16 @@ export default defineComponent({
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
     .portfolio-window-position {
+        position: absolute;
         left: calc(50vw - var(--portfolio-width) / 2);
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
     .portfolio-window-position {
+        position: absolute;
         left: calc(50vw - 900px / 2);
     }
 
