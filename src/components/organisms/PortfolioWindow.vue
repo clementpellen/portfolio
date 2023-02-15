@@ -4,7 +4,7 @@
     @click="portfolioClick = true"
     >
         <ProgressHeader />
-        <main>
+        <main class="main-container flex-row">
             <ProjectsGallery />
             <ExpandedProject />
         </main>
@@ -68,16 +68,21 @@ export default defineComponent({
     background-color: var(--main-dark);
     box-sizing: border-box;
     width: var(--portfolio-width);
-    max-width: 1000px;
+    max-width: 900px;
     height: var(--portfolio-height);
     overflow: hidden;
     padding: 15px 30px 30px 30px;
+    gap: 20px;
     
     main {
-        margin-top: 20px;
         width: 100%;
         flex: 1;
-        background-color: red;
+        gap: 20px;
+
+        * {
+            flex: 1;
+            height: 100%;
+        }
     }
 }
 
@@ -127,15 +132,15 @@ export default defineComponent({
 
 @media (min-width: 1200px) {
     .portfolio-window-position {
-        left: calc(50vw - 1000px / 2);
+        left: calc(50vw - 900px / 2);
     }
 
     @keyframes close {
         0% {
-            width: 1000px;
+            width: 900px;
             height: 90vh;
             top: calc(50vh - var(--portfolio-height) / 2);
-            left: calc(50vw - 1000px / 2);
+            left: calc(50vw - 900px / 2);
             z-index: 3;
         }
 

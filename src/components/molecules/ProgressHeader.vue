@@ -19,7 +19,7 @@ export default defineComponent({
     height: 10%;
 
     .test {
-        color: white;
+        color: var(--main-light);
     }
 }
 </style>

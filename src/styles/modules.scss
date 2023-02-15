@@ -22,6 +22,10 @@
     filter: blur(10px);
 }
 
+.big-blur {
+    filter: brightness(90%) blur(100px);
+}
+
 .radius {
     border-radius: 30px;
 }
