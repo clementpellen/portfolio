@@ -64,8 +64,8 @@ export default defineComponent({
         }
 
         img {
-            max-height: 50%;
-            // width: auto;
+            height: 50%;
+            object-fit: cover;
         }
 
         .title-container>.dates {
