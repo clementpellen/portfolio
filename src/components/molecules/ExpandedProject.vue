@@ -1,7 +1,7 @@
 <template>
     <div class="expanded-project radius">
         <div class="foreground flex-column">
-            <img class="radius" src="@/assets/img/ville.jpg" />
+            <img src="@/assets/img/ville.jpg" />
             <div class="title-container">
                 <h1 class="title">Projet d'exemple</h1>
                 <h4 class="dates">Mai 2020 - Novembre 2021</h4>
@@ -65,11 +65,7 @@ export default defineComponent({
 
         img {
             height: 50%;
-            object-fit: cover;
-        }
-
-        .title-container>.dates {
-            color: var(--border) !important;
+            border-radius: 20px;
         }
 
         .description {

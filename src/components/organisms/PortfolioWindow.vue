@@ -1,3 +1,5 @@
+<!-- TODO: Réparer le responsive -->
+
 <template>
     <div class="portfolio-window portfolio-window-position flex-column radius" 
     :class="{'close': close, 'open': open}" 
@@ -81,9 +83,17 @@ export default defineComponent({
 
         * {
             flex: 1;
+        }
+        
+        div:first-child {
+            height: 550px;
+        }
+    
+        div:nth-child(2) {
             height: 100%;
         }
     }
+
 }
 
 .portfolio-window-position {
