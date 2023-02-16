@@ -1,6 +1,22 @@
 <template>
-    <div class="projects-gallery">
-        <ProjectPreview  v-for="item in 5" :key="item"/>
+    <div class="gallery-background-container">
+        <div class="projects-gallery" @scroll="handleScroll">
+            <ProjectPreview v-for="(item, index) in 5" :key="item"
+            :index="index"
+            :scrollPosition="scrollPosition"
+            />
+        </div>
+        <ProjectPreview
+        :index="Math.floor(scrollPosition / itemSpacing) + 3"
+        :scrollPosition="scrollPosition"
+        :scrollBackground="true"
+        :scrollHeight="scrollHeight"
+        />
+        <!-- <ProjectPreview
+        :index="Math.floor(scrollPosition / itemSpacing) + 4"
+        :scrollPosition="scrollPosition"
+        :scrollBackground="true"
+        /> -->
     </div>
 </template>
 
@@ -12,12 +28,34 @@ export default defineComponent({
     name: 'ProjectsGallery',
     components: {
         ProjectPreview
-    }
+    },
+    data() {
+        return {
+            itemSpacing: 145,
+            scrollPosition: 0,
+            scrollHeight: 0
+        }
+    },
+    methods: {
+        handleScroll(event) {
+            this.scrollPosition = parseInt(event.target.scrollTop);
+            this.scrollHeight = parseInt(event.target.scrollHeight - event.target.offsetHeight - 1);
+        }
+    },
 });
 </script>
 
 <style scoped lang="scss">
+.gallery-background-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 .projects-gallery {
+    width: 100%;
+    height: 100%;
     overflow: scroll;
 
     *:not(:last-child) {

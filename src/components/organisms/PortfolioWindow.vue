@@ -1,5 +1,3 @@
-<!-- TODO: Réparer le responsive -->
-
 <template>
     <div class="portfolio-window portfolio-window-position flex-column radius" 
     :class="{'close': close, 'open': open}" 

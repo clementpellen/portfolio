@@ -1,5 +1,9 @@
+
 <template>
-    <div class="project-preview radius">
+    <div class="project-preview radius"
+    :class="{'visible':setPositionVisible(index, itemSpacing, scrollPosition)}"
+    :style="scrollBackground && setBackgroundStyle(index, itemSpacing, scrollPosition)"
+    >
         <div class="foreground">
             <img class="radius" src="@/assets/img/ville.jpg" />
             <div class="title-container">
@@ -27,6 +31,57 @@ export default defineComponent({
     components: {
         OpenInNew,
         Done__WhiteSvg
+    },
+    data() {
+        return {
+            itemSpacing: 145
+        }
+    },
+    props: {
+        index: {
+            type: Number,
+            required: true
+        },
+        scrollPosition: {
+            type: Number,
+            required: true
+        },
+        scrollBackground: {
+            type: Boolean,
+            required: false,
+            default: false
+        },
+        scrollHeight: {
+            type: Number,
+            required: false,
+            default: 0
+        }
+    },
+    methods: {
+        setPositionVisible(index, itemSpacing, scrollPosition) {
+            // visible
+            if (index < Math.floor(scrollPosition / itemSpacing) + 3) {
+                return true;
+            }
+            // invisible
+            else {
+                return false;
+            }
+        },
+        setBackgroundStyle(index, itemSpacing, scrollPosition) {
+            const tolerance = 5;
+
+            if(scrollPosition <= this.scrollHeight - tolerance) {
+                const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.9;
+                return {
+                    position: 'absolute',
+                    opacity: 1,
+                    scale: scale,
+                    top: `${2.5 * itemSpacing}px`,
+                    zIndex: 9
+                }
+            }
+        }
     }
 });
 </script>
@@ -36,12 +91,21 @@ export default defineComponent({
     width: 100%;
     height: 160px;
 
+    background-color: var(--main-dark);
     color: var(--main-light);
     border: 2px solid var(--border);
 
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
+
+    opacity: 0;
+
+    z-index: 10;
+
+    &.visible {
+        opacity: 1;
+    }
 
     .foreground {
         width: 100%;
