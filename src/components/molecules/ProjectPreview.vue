@@ -2,7 +2,7 @@
 <template>
     <div class="project-preview radius"
     :class="{'visible':setPositionVisible(index, itemSpacing, scrollPosition)}"
-    :style="scrollBackground && setBackgroundStyle(itemSpacing, scrollPosition)"
+    :style="scrollBackground && setBackgroundStyle(layerIndex, itemSpacing, scrollPosition)"
     >
         <div class="foreground">
             <img class="radius" src="@/assets/img/ville.jpg" />
@@ -60,6 +60,11 @@ export default defineComponent({
             type: Number,
             required: false,
             default: 0
+        },
+        layerIndex: {
+            type: Number,
+            required: false,
+            default: 0
         }
     },
     methods: {
@@ -77,15 +82,34 @@ export default defineComponent({
                 return false;
             }
         },
-        setBackgroundStyle(itemSpacing, scrollPosition) {
+        setBackgroundStyle(layerIndex, itemSpacing, scrollPosition) {
             if(scrollPosition <= this.scrollHeight) {
-                const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.9;
-                return {
-                    position: 'absolute',
-                    opacity: 1,
-                    scale: scale,
-                    top: `${2.15 * itemSpacing}px`,
-                    zIndex: 9
+
+                if(layerIndex === 1) {
+                    const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.9;
+                    const top = 2.125 - (0.1 * (scrollPosition % itemSpacing / itemSpacing));
+                    const brightness = 0.2 * (scrollPosition % itemSpacing / itemSpacing) + 0.8;
+                    return {
+                        position: 'absolute',
+                        opacity: 1,
+                        scale: scale,
+                        top: `${top * itemSpacing}px`,
+                        zIndex: 9,
+                        filter: `brightness(${brightness})`
+                    }
+                }
+                else if(layerIndex === 2) {
+                    const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.8;
+                    const top = 2.25 - (0.1 * (scrollPosition % itemSpacing / itemSpacing));
+                    const brightness = 0.4 * (scrollPosition % itemSpacing / itemSpacing) + 0.6;
+                    return {
+                        position: 'absolute',
+                        opacity: 1,
+                        scale: scale,
+                        top: `${top * itemSpacing}px`,
+                        zIndex: 8,
+                        filter: `brightness(${brightness})`
+                    }
                 }
             }
         }

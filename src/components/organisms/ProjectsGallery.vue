@@ -6,6 +6,7 @@
             :scrollPosition="scrollPosition"
             :scrollHeight="scrollHeight"
             :galleryLength="galleryLength"
+            :layerIndex="0"
             />
         </div>
         <ProjectPreview
@@ -13,12 +14,15 @@
         :scrollPosition="scrollPosition"
         :scrollBackground="true"
         :scrollHeight="scrollHeight"
+        :layerIndex="1"
         />
-        <!-- <ProjectPreview
+        <ProjectPreview
         :index="Math.floor(scrollPosition / itemSpacing) + 4"
         :scrollPosition="scrollPosition"
         :scrollBackground="true"
-        /> -->
+        :scrollHeight="scrollHeight"
+        :layerIndex="2"
+        />
     </div>
 </template>
 
