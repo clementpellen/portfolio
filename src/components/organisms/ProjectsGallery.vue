@@ -1,9 +1,11 @@
 <template>
     <div class="gallery-background-container">
         <div class="projects-gallery" @scroll="handleScroll">
-            <ProjectPreview v-for="(item, index) in 5" :key="item"
+            <ProjectPreview v-for="(item, index) in galleryLength" :key="item"
             :index="index"
             :scrollPosition="scrollPosition"
+            :scrollHeight="scrollHeight"
+            :galleryLength="galleryLength"
             />
         </div>
         <ProjectPreview
@@ -31,7 +33,8 @@ export default defineComponent({
     },
     data() {
         return {
-            itemSpacing: 145,
+            galleryLength: 10,
+            itemSpacing: 170,
             scrollPosition: 0,
             scrollHeight: 0
         }

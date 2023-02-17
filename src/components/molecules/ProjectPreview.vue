@@ -2,7 +2,7 @@
 <template>
     <div class="project-preview radius"
     :class="{'visible':setPositionVisible(index, itemSpacing, scrollPosition)}"
-    :style="scrollBackground && setBackgroundStyle(index, itemSpacing, scrollPosition)"
+    :style="scrollBackground && setBackgroundStyle(itemSpacing, scrollPosition)"
     >
         <div class="foreground">
             <img class="radius" src="@/assets/img/ville.jpg" />
@@ -34,7 +34,7 @@ export default defineComponent({
     },
     data() {
         return {
-            itemSpacing: 145
+            itemSpacing: 170
         }
     },
     props: {
@@ -55,6 +55,11 @@ export default defineComponent({
             type: Number,
             required: false,
             default: 0
+        },
+        galleryLength: {
+            type: Number,
+            required: false,
+            default: 0
         }
     },
     methods: {
@@ -63,21 +68,23 @@ export default defineComponent({
             if (index < Math.floor(scrollPosition / itemSpacing) + 3) {
                 return true;
             }
+            // last item
+            else if(index === this.galleryLength - 1 && scrollPosition >= this.scrollHeight) {
+                return true;
+            }
             // invisible
             else {
                 return false;
             }
         },
-        setBackgroundStyle(index, itemSpacing, scrollPosition) {
-            const tolerance = 5;
-
-            if(scrollPosition <= this.scrollHeight - tolerance) {
+        setBackgroundStyle(itemSpacing, scrollPosition) {
+            if(scrollPosition <= this.scrollHeight) {
                 const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.9;
                 return {
                     position: 'absolute',
                     opacity: 1,
                     scale: scale,
-                    top: `${2.5 * itemSpacing}px`,
+                    top: `${2.15 * itemSpacing}px`,
                     zIndex: 9
                 }
             }
