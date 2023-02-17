@@ -14,13 +14,16 @@
         :scrollPosition="scrollPosition"
         :scrollBackground="true"
         :scrollHeight="scrollHeight"
+        :galleryLength="galleryLength"
         :layerIndex="1"
         />
         <ProjectPreview
+        v-if="Math.floor(scrollPosition / itemSpacing) + 4 < galleryLength"
         :index="Math.floor(scrollPosition / itemSpacing) + 4"
         :scrollPosition="scrollPosition"
         :scrollBackground="true"
         :scrollHeight="scrollHeight"
+        :galleryLength="galleryLength"
         :layerIndex="2"
         />
     </div>

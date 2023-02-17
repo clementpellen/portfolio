@@ -83,33 +83,35 @@ export default defineComponent({
             }
         },
         setBackgroundStyle(layerIndex, itemSpacing, scrollPosition) {
-            if(scrollPosition <= this.scrollHeight) {
+            if(layerIndex === 1) {
+                const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.9;
 
-                if(layerIndex === 1) {
-                    const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.9;
-                    const top = 2.125 - (0.1 * (scrollPosition % itemSpacing / itemSpacing));
-                    const brightness = 0.2 * (scrollPosition % itemSpacing / itemSpacing) + 0.8;
-                    return {
-                        position: 'absolute',
-                        opacity: 1,
-                        scale: scale,
-                        top: `${top * itemSpacing}px`,
-                        zIndex: 9,
-                        filter: `brightness(${brightness})`
-                    }
+                var top = 2.125 - (0.1 * (scrollPosition % itemSpacing / itemSpacing));
+                if(this.index === this.galleryLength - 1) {
+                    top = 2.125 + (0.2 * (scrollPosition % itemSpacing / itemSpacing));
                 }
-                else if(layerIndex === 2) {
-                    const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.8;
-                    const top = 2.25 - (0.1 * (scrollPosition % itemSpacing / itemSpacing));
-                    const brightness = 0.4 * (scrollPosition % itemSpacing / itemSpacing) + 0.6;
-                    return {
-                        position: 'absolute',
-                        opacity: 1,
-                        scale: scale,
-                        top: `${top * itemSpacing}px`,
-                        zIndex: 8,
-                        filter: `brightness(${brightness})`
-                    }
+
+                const brightness = 0.2 * (scrollPosition % itemSpacing / itemSpacing) + 0.8;
+                return {
+                    position: 'absolute',
+                    opacity: 1,
+                    scale: scale,
+                    top: `${top * itemSpacing}px`,
+                    zIndex: 9,
+                    filter: `brightness(${brightness})`
+                }
+            }
+            else if(layerIndex === 2) {
+                const scale = 0.1 * (scrollPosition % itemSpacing / itemSpacing) + 0.8;
+                const top = 2.25 - (0.1 * (scrollPosition % itemSpacing / itemSpacing));
+                const brightness = 0.4 * (scrollPosition % itemSpacing / itemSpacing) + 0.6;
+                return {
+                    position: 'absolute',
+                    opacity: 1,
+                    scale: scale,
+                    top: `${top * itemSpacing}px`,
+                    zIndex: 8,
+                    filter: `brightness(${brightness})`
                 }
             }
         }
