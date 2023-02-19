@@ -129,6 +129,5 @@ pnpm-debug.log*
 *.sw?
 
 # docker
-Dockerfile
 docker-compose.yml
 .dockerignore
