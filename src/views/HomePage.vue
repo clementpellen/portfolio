@@ -1,11 +1,7 @@
 <template>
     <div class="home-page">
         <!-- <DynamicIsland :impact="dynamicIslandImpact" @click="displayPortfolio = true" /> -->
-        <!-- <div class="sticky-filter" v-if="islandClick">
-            <div class="color-dodge" />
-            <div class="color-burn" />
-        </div> -->
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <svg>
             <defs>
                 <filter id="goo">
                     <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
