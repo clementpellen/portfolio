@@ -26,8 +26,7 @@ export default defineComponent({
 .profile-bubble-position {
     position: absolute;
     top: calc(50vh - var(--island-height) / 2);
-    // left: calc(50vw + var(--island-height) / 2 + 125px);
-    left: calc(50vw + var(--island-width) / 2 - var(--island-height));
+    left: calc(50vw + var(--island-width) / 2);
     z-index: 1;
 }
 
@@ -41,7 +40,7 @@ export default defineComponent({
     }
 
     100% {
-        left: calc(50vw + var(--island-width) / 2 - var(--island-height) + 60px);
+        left: calc(50vw + var(--island-width) / 2 - var(--island-height) + 70px);
     }
 }
 </style>
