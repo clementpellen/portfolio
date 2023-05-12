@@ -53,41 +53,8 @@ export default defineComponent({
     height: 100%;
 
     .sticky-filter {
-        // position: relative;
-        top: calc(50vh - var(--island-height) / 2 - 10px);
-        left: calc(50vw - var(--island-width) / 2 - 10px);
-        width: calc(var(--island-width) + var(--island-height) + 60px);
-        height: calc(var(--island-height) + 20px);
         filter: url(#goo);
     }
-
-    // .sticky-filter {
-    //     position: relative;
-    //     top: calc(50vh - var(--island-height) / 2 - 10px);
-    //     left: calc(50vw - var(--island-width) / 2 - 10px);
-    //     width: calc(var(--island-width) + var(--island-height) + 60px);
-    //     height: calc(var(--island-height) + 20px);
-    //     backdrop-filter: blur(2px) contrast(0.5);
-    //     z-index: 3;
-
-    //     // .color-dodge {
-    //     //     position: absolute;
-    //     //     width: 100%;
-    //     //     height: 100%;
-    //     //     background-color: #80808000;
-    //     //     mix-blend-mode: color-dodge;
-    //     // }
-
-    //     // .color-burn {
-    //     //     position: absolute;
-    //     //     top: 0;
-    //     //     left: 0;
-    //     //     width: 100%;
-    //     //     height: 100%;
-    //     //     background-color: #808080;
-    //     //     mix-blend-mode: color-burn;
-    //     // }
-    // }
 
     .background {
         height: 100%;
