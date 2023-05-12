@@ -1,16 +1,7 @@
 <template>
     <div class="home-page">
         <!-- <DynamicIsland :impact="dynamicIslandImpact" @click="displayPortfolio = true" /> -->
-        <svg>
-            <defs>
-                <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 20 -10"
-                        result="goo" />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                </filter>
-            </defs>
-        </svg>
+        <GooeyFilter />
         <div class="sticky-filter">
             <DynamicIsland :impact="dynamicIslandImpact" @click="islandClick = true" />
             <ProfileBubble :islandClick="islandClick" />
@@ -23,6 +14,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import GooeyFilter from '@/components/molecules/GooeyFilter.vue';
 import DynamicIsland from '@/components/molecules/DynamicIsland.vue';
 // import PortfolioWindow from '@/components/organisms/PortfolioWindow.vue';
 import ProfileBubble from '@/components/atoms/ProfileBubble.vue';
@@ -30,6 +22,7 @@ import ProfileBubble from '@/components/atoms/ProfileBubble.vue';
 export default defineComponent({
     name: "HomePage",
     components: {
+        GooeyFilter,
         DynamicIsland,
         // PortfolioWindow,
         ProfileBubble,
