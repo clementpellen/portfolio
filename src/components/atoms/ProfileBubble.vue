@@ -1,13 +1,19 @@
 <template>
-    <div class="profile-bubble profile-bubble-position radius"
-        :class="{ 'go-in-island': bubbleClick, 'leave-island': islandClick }" @click="bubbleClick = true" />
+    <div class="profile-bubble profile-bubble-position flex-center radius"
+        :class="{ 'go-in-island': bubbleClick, 'leave-island': islandClick }" @click="bubbleClick = true">
+        <Profile__SvgVue />
+    </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import Profile__SvgVue from '@/assets/svg/Profile__Svg.vue';
 
 export default defineComponent({
     name: 'ProfileBubble',
+    components: {
+        Profile__SvgVue
+    },
     props: {
         islandClick: {
             type: Boolean,
