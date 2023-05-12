@@ -1,5 +1,6 @@
 <template>
-    <div class="profile-bubble profile-bubble-position radius" :class="{ 'leave-island': islandClick }" />
+    <div class="profile-bubble profile-bubble-position radius"
+        :class="{ 'go-in-island': bubbleClick, 'leave-island': islandClick }" @click="bubbleClick = true" />
 </template>
 
 <script>
@@ -11,6 +12,11 @@ export default defineComponent({
         islandClick: {
             type: Boolean,
             default: false
+        }
+    },
+    data() {
+        return {
+            bubbleClick: false
         }
     },
 });
@@ -26,8 +32,12 @@ export default defineComponent({
 .profile-bubble-position {
     position: absolute;
     top: calc(50vh - var(--island-height) / 2);
-    left: calc(50vw + var(--island-width) / 2 - var(--island-height));
+    left: calc(50vw + var(--island-width) / 2 + 30px);
     z-index: 1;
+}
+
+.go-in-island {
+    animation: go-in-island 1s forwards;
 }
 
 .leave-island {
@@ -41,6 +51,16 @@ export default defineComponent({
 
     100% {
         left: calc(50vw + var(--island-width) / 2 - var(--island-height) + 70px);
+    }
+}
+
+@keyframes go-in-island {
+    0% {
+        left: calc(50vw + var(--island-width) / 2 + 30px);
+    }
+
+    100% {
+        left: calc(50vw + var(--island-width) / 2 - var(--island-height));
     }
 }
 </style>
