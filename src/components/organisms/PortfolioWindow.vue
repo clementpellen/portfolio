@@ -1,8 +1,6 @@
 <template>
-    <div class="portfolio-window portfolio-window-position flex-column radius" 
-    :class="{'close': close, 'open': open}" 
-    @click="portfolioClick = true"
-    >
+    <div class="portfolio-window portfolio-window-position flex-column radius" :class="{ 'close': close, 'open': open }"
+        @click="portfolioClick = true">
         <ProgressHeader />
         <main class="main-container flex-row">
             <ProjectsGallery />
@@ -35,9 +33,9 @@ export default defineComponent({
     methods: {
         closePortfolio() {
             this.close = true;
-            this.$emit('portfolio-clicked');
+            this.$emit('close-portfolio');
             setTimeout(() => {
-                this.$emit('close-portfolio');
+                this.$emit('portfolio-closed');
             }, 400 * 2);
         },
         getBodyClick() {
@@ -55,6 +53,7 @@ export default defineComponent({
     created() {
         setTimeout(() => {
             this.open = false;
+            this.$emit('portfolio-opened');
         }, 800);
     },
     mounted() {
@@ -73,7 +72,7 @@ export default defineComponent({
     overflow: hidden;
     padding: 15px 30px 30px 30px;
     gap: 20px;
-    
+
     main {
         width: 100%;
         flex: 1;
@@ -82,7 +81,7 @@ export default defineComponent({
         * {
             flex: 1;
             height: 543px;
-        }   
+        }
     }
 
 }
@@ -109,6 +108,7 @@ export default defineComponent({
         left: calc(50vw - var(--portfolio-width) / 2);
         z-index: 3;
     }
+
     50% {
         width: calc(var(--island-width) * 1.05);
         height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
@@ -116,6 +116,7 @@ export default defineComponent({
         left: calc(50vw - var(--island-width) / 2);
         z-index: 2;
     }
+
     100% {
         width: calc(var(--island-width) * 1.05);
         height: var(--island-height);

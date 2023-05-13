@@ -1,13 +1,13 @@
 <template>
     <div class="home-page">
         <GooeyFilter />
-        <div :class="{ 'sticky-filter': !displayPortfolio && !dynamicIslandImpact }">
-            <DynamicIsland :impact="dynamicIslandImpact" @click="displayPortfolio = true" />
-            <ProfileBubble />
+        <div :class="{ 'gooey-filter': !openPortfolio && !dynamicIslandImpact }">
+            <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolio = true" />
+            <ProfileBubble :goInIsland="portfolioOpened || dynamicIslandImpact" />
         </div>
-        <PortfolioWindow v-if="displayPortfolio" @portfolio-clicked="launchDynamicIslandImpact()"
-            @close-portfolio="displayPortfolio = false" />
-        <img src="@/assets/img/apple-screen.jpg" class="background" :class="{ 'blur': displayPortfolio }" />
+        <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
+            @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" />
+        <img src="@/assets/img/apple-screen.jpg" class="background" :class="{ 'blur': openPortfolio }" />
     </div>
 </template>
 
@@ -28,8 +28,9 @@ export default defineComponent({
     },
     data() {
         return {
-            displayPortfolio: false,
+            openPortfolio: false,
             dynamicIslandImpact: false,
+            portfolioOpened: false,
         }
     },
     methods: {
@@ -41,6 +42,10 @@ export default defineComponent({
                 }, 800 * 2);
             }, 700);
         },
+        PortfolioClosed() {
+            this.openPortfolio = false;
+            this.portfolioOpened = false;
+        }
     },
 });
 </script>
@@ -50,7 +55,7 @@ export default defineComponent({
     width: 100%;
     height: 100%;
 
-    .sticky-filter {
+    .gooey-filter {
         filter: url(#goo);
     }
 

@@ -1,6 +1,6 @@
 <template>
-    <div class="profile-bubble profile-bubble-position flex-center radius" :class="{ 'go-in-island': bubbleClick }"
-        @click="bubbleClick = true">
+    <div class="profile-bubble profile-bubble-position flex-center radius" @click="bubbleClick = true"
+        :class="{ 'go-in-island': goInIsland || bubbleClick, 'leave-island': !goInIsland && !bubbleClick }">
         <Profile__SvgVue />
     </div>
 </template>
@@ -19,6 +19,12 @@ export default defineComponent({
             bubbleClick: false
         }
     },
+    props: {
+        goInIsland: {
+            type: Boolean,
+            default: false
+        }
+    },
 });
 </script>
 
@@ -29,7 +35,11 @@ export default defineComponent({
     height: var(--island-height);
 
     transition:
-        all var(--transition-standard) ease-in-out;
+        width var(--transition-standard) ease-in-out,
+        height var(--transition-standard) ease-in-out,
+        top var(--transition-standard) ease-in-out,
+        left var(--transition-standard) ease-in-out,
+        transform 5s ease-in-out;
 
     cursor: pointer;
 }
@@ -50,30 +60,6 @@ export default defineComponent({
 }
 
 .go-in-island {
-    animation: go-in-island 1s forwards;
-}
-
-.leave-island {
-    animation: leave-island 1s forwards;
-}
-
-@keyframes leave-island {
-    0% {
-        left: calc(50vw + var(--island-width) / 2 - var(--island-height));
-    }
-
-    100% {
-        left: calc(50vw + var(--island-width) / 2 - var(--island-height) + 70px);
-    }
-}
-
-@keyframes go-in-island {
-    0% {
-        left: calc(50vw + var(--island-width) / 2 + 30px);
-    }
-
-    100% {
-        left: calc(50vw + var(--island-width) / 2 - var(--island-height));
-    }
+    transform: translateX(-100px);
 }
 </style>
