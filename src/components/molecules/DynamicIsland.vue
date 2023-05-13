@@ -1,6 +1,6 @@
-<!-- :class="{ 'click': click, 'impact': impact }" @click="onClick()"> -->
 <template>
-    <div class="dynamic-island dynamic-island-position dynamic-island-container radius">
+    <div class="dynamic-island dynamic-island-position dynamic-island-container radius"
+        :class="{ 'click': click, 'impact': impact }" @click="onClick()">
         <span class="icon" :class="{ 'move': indication }">👇</span>
         <ProgressCircle />
     </div>
