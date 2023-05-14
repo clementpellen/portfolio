@@ -1,9 +1,7 @@
 <template>
-    <div class="dynamic-island dynamic-island-position dynamic-island-container radius" 
-    :class="{'click': click, 'impact': impact}"
-    @click="onClick()"
-    >
-        <span class="icon" :class="{'move': indication}">👇</span>
+    <div class="dynamic-island dynamic-island-position dynamic-island-container radius"
+        :class="{ 'click': click, 'impact': impact }" @click="onClick()">
+        <span class="icon" :class="{ 'move': indication }">👇</span>
         <ProgressCircle />
     </div>
 </template>
@@ -46,11 +44,11 @@ export default defineComponent({
     background-color: var(--main-dark);
     width: var(--island-width);
     height: var(--island-height);
-    
+
     cursor: pointer;
-    
-    transition: 
-    all var(--transition-standard) ease-in-out;
+
+    transition:
+        all var(--transition-standard) ease-in-out;
 
     .icon.move {
         animation: move 30s 2s infinite;
@@ -91,16 +89,19 @@ export default defineComponent({
         height: var(--island-height);
         top: calc(50vh - var(--island-height) / 2);
     }
+
     20% {
         height: calc(var(--island-height) * 1.2);
         top: calc(50vh - (var(--island-height) * 2) / 2);
     }
+
     60% {
         width: calc(var(--island-width) * 1.2);
         left: calc(50vw - (var(--island-width) * 1.2) / 2);
         height: calc(var(--island-height) * 0.95);
         top: calc(50vh - var(--island-height) / 2);
     }
+
     100% {
         height: var(--island-height);
     }
@@ -110,15 +111,19 @@ export default defineComponent({
     0% {
         transform: translateY(0);
     }
+
     1% {
         transform: translateY(-5px);
     }
+
     3% {
         transform: translateY(5px);
     }
+
     4% {
         transform: translateY(0);
     }
+
     100% {
         transform: translateY(0);
     }
