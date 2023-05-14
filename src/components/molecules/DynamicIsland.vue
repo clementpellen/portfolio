@@ -57,8 +57,9 @@ export default defineComponent({
 
 .dynamic-island-position {
     position: absolute;
-    top: calc(50vh - var(--island-height) / 2);
-    left: calc(50vw - var(--island-width) / 2);
+    top: var(--island-top-position);
+    left: var(--island-left-position);
+
     z-index: 2;
 }
 
@@ -72,7 +73,7 @@ export default defineComponent({
 
 .dynamic-island:hover {
     height: calc(var(--island-height) * 1.2);
-    top: calc(50vh - (var(--island-height) * 1.2) / 2);
+    top: calc(var(--island-top-position) - var(--island-height) * 0.1);
 }
 
 .dynamic-island.click {

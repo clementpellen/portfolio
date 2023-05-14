@@ -3,11 +3,22 @@
     --main-light: #f5f5f5;
     --border: #a9a9a9;
 
-    --island-width: 240px;
     --island-height: 40px;
+    --island-width: 240px;
 
-    --portfolio-width: 90vw;
+    --island-top-position: calc(50% - var(--island-height) / 2);
+    --island-left-position: calc(50% - (var(--island-bubble-width)) / 2);
+
+    --bubble-diameter: var(--island-height);
+    
+    --bubble-top-position: calc(50% - var(--bubble-diameter) / 2);
+    --bubble-left-position: calc(var(--island-left-position) + var(--island-width) + var(--island-bubble-spacing));
+    
+    --island-bubble-spacing: 30px;
+    --island-bubble-width: calc(var(--island-width) + var(--island-bubble-spacing) + var(--bubble-diameter))
+
     --portfolio-height: 90vh;
+    --portfolio-width: 90vw;
 
     --transition-standard: 0.4s;
     --animation-standard: 0.8s;

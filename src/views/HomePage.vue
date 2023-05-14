@@ -1,12 +1,19 @@
+<!-- TODO:
+            - Cleaning css positions of gooey filter ✅
+            - Cleaning css positions of DynamicIsland.vue ✅
+            - Cleaning css animations
+            - Cleaning html + js in HomePage.vue
+-->
+
 <template>
     <div class="home-page">
         <GooeyFilter />
-        <div :class="{ 'gooey-filter': !openPortfolio && !dynamicIslandImpact }">
+        <main class="main-position" :class="{ 'gooey-filter': !openPortfolio && !dynamicIslandImpact }">
             <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolio = true" />
             <ProfileBubble :goInIsland="portfolioOpened || dynamicIslandImpact" />
-        </div>
-        <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
-            @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" />
+        </main>
+        <!-- <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
+            @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" /> -->
         <img src="@/assets/img/apple-screen.jpg" class="background" :class="{ 'blur': openPortfolio }" />
     </div>
 </template>
@@ -15,16 +22,16 @@
 import { defineComponent } from 'vue';
 import GooeyFilter from '@/components/molecules/GooeyFilter.vue';
 import DynamicIsland from '@/components/molecules/DynamicIsland.vue';
-import PortfolioWindow from '@/components/organisms/PortfolioWindow.vue';
 import ProfileBubble from '@/components/atoms/ProfileBubble.vue';
+// import PortfolioWindow from '@/components/organisms/PortfolioWindow.vue';
 
 export default defineComponent({
     name: "HomePage",
     components: {
         GooeyFilter,
         DynamicIsland,
-        PortfolioWindow,
         ProfileBubble,
+        // PortfolioWindow,
     },
     data() {
         return {
@@ -55,8 +62,30 @@ export default defineComponent({
     width: 100%;
     height: 100%;
 
-    .gooey-filter {
-        filter: url(#goo);
+    main {
+        --margin-height: 20px;
+        --margin-width: 50px;
+
+        --height: calc(var(--island-height) + var(--margin-height) * 2);
+        --width: calc(var(--island-width) + var(--bubble-diameter) + var(--margin-width) * 2);
+
+        background-color: aqua;
+
+        height: var(--height);
+        width: var(--width);
+    }
+
+    main.main-position {
+        --top: calc(50vh - var(--height) / 2);
+        --left: calc(50vw - var(--width) / 2);
+
+        position: absolute;
+        top: var(--top);
+        left: var(--left);
+    }
+
+    main.gooey-filter {
+        // filter: url(#goo);
     }
 
     .background {
