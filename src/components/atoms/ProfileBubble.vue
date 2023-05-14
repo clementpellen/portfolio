@@ -39,7 +39,7 @@ export default defineComponent({
         height var(--transition-standard) ease-in-out,
         top var(--transition-standard) ease-in-out,
         left var(--transition-standard) ease-in-out,
-        transform 5s ease-in-out;
+        transform 1s ease-in-out;
 
     cursor: pointer;
 }
