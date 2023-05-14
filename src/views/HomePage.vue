@@ -1,6 +1,7 @@
 <!-- TODO:
             - Cleaning css positions of gooey filter ✅
             - Cleaning css positions of DynamicIsland.vue ✅
+            - Cleaning css positions of PortfolioWindow.vue
             - Cleaning css animations
             - Cleaning html + js in HomePage.vue
 -->
@@ -12,8 +13,8 @@
             <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolio = true" />
             <ProfileBubble :goInIsland="portfolioOpened || dynamicIslandImpact" />
         </main>
-        <!-- <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
-            @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" /> -->
+        <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
+            @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" />
         <img src="@/assets/img/apple-screen.jpg" class="background" :class="{ 'blur': openPortfolio }" />
     </div>
 </template>
@@ -23,7 +24,7 @@ import { defineComponent } from 'vue';
 import GooeyFilter from '@/components/molecules/GooeyFilter.vue';
 import DynamicIsland from '@/components/molecules/DynamicIsland.vue';
 import ProfileBubble from '@/components/atoms/ProfileBubble.vue';
-// import PortfolioWindow from '@/components/organisms/PortfolioWindow.vue';
+import PortfolioWindow from '@/components/organisms/PortfolioWindow.vue';
 
 export default defineComponent({
     name: "HomePage",
@@ -31,7 +32,7 @@ export default defineComponent({
         GooeyFilter,
         DynamicIsland,
         ProfileBubble,
-        // PortfolioWindow,
+        PortfolioWindow,
     },
     data() {
         return {
@@ -69,8 +70,6 @@ export default defineComponent({
         --height: calc(var(--island-height) + var(--margin-height) * 2);
         --width: calc(var(--island-width) + var(--bubble-diameter) + var(--margin-width) * 2);
 
-        background-color: aqua;
-
         height: var(--height);
         width: var(--width);
     }
@@ -85,7 +84,7 @@ export default defineComponent({
     }
 
     main.gooey-filter {
-        // filter: url(#goo);
+        filter: url(#goo);
     }
 
     .background {

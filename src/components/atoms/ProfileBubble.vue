@@ -1,6 +1,6 @@
-<!-- :class="{ 'go-in-island': goInIsland || bubbleClick, 'leave-island': !goInIsland && !bubbleClick }"> -->
 <template>
-    <div class="profile-bubble profile-bubble-position flex-center radius" @click="bubbleClick = true">
+    <div class="profile-bubble profile-bubble-position flex-center radius" @click="bubbleClick = true"
+        :class="{ 'go-in-island': goInIsland || bubbleClick, 'leave-island': !goInIsland && !bubbleClick }">
         <Profile__SvgVue />
     </div>
 </template>
