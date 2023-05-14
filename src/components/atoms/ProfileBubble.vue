@@ -35,10 +35,7 @@ export default defineComponent({
     height: var(--bubble-diameter);
 
     transition:
-        width var(--transition-standard) ease-in-out,
-        height var(--transition-standard) ease-in-out,
-        top var(--transition-standard) ease-in-out,
-        left var(--transition-standard) ease-in-out,
+        // transform var(--transition-standard) ease-in-out,
         transform 1s ease-in-out;
 
     cursor: pointer;
@@ -55,8 +52,7 @@ export default defineComponent({
 .profile-bubble:hover {
     height: calc(var(--bubble-diameter) * 1.2);
     width: calc(var(--bubble-diameter) * 1.2);
-    top: calc(var(--bubble-top-position) - var(--bubble-diameter) * 0.1);
-    left: calc(var(--bubble-left-position) - var(--bubble-diameter) * 0.1);
+    transform: translateX(calc(var(--bubble-diameter) * (-0.1))) translateY(calc(var(--bubble-diameter) * (-0.1)));
 }
 
 .go-in-island {

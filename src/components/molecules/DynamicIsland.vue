@@ -73,12 +73,12 @@ export default defineComponent({
 
 .dynamic-island:hover {
     height: calc(var(--island-height) * 1.2);
-    top: calc(var(--island-top-position) - var(--island-height) * 0.1);
+    transform: translateY(calc(var(--island-height) * (-0.1)));
 }
 
 .dynamic-island.click {
     height: var(--island-height);
-    top: calc(50vh - var(--island-height) / 2);
+    top: var(--island-top-position);
 }
 
 .dynamic-island.impact {
@@ -88,19 +88,19 @@ export default defineComponent({
 @keyframes impact {
     0% {
         height: var(--island-height);
-        top: calc(50vh - var(--island-height) / 2);
+        top: var(--island-top-position);
     }
 
     20% {
         height: calc(var(--island-height) * 1.2);
-        top: calc(50vh - (var(--island-height) * 2) / 2);
+        transform: translateY(-25px);
     }
 
     60% {
-        width: calc(var(--island-width) * 1.2);
-        left: calc(50vw - (var(--island-width) * 1.2) / 2);
         height: calc(var(--island-height) * 0.95);
-        top: calc(50vh - var(--island-height) / 2);
+        transform: translateY(calc(var(--island-height) * (0.05)));
+        width: calc(var(--island-width) * 1.2);
+        left: calc(var(--island-left-position) * (-0.1));
     }
 
     100% {
@@ -110,7 +110,7 @@ export default defineComponent({
 
 @keyframes move {
     0% {
-        transform: translateY(0);
+        transform: translateY(0px);
     }
 
     1% {
@@ -122,11 +122,11 @@ export default defineComponent({
     }
 
     4% {
-        transform: translateY(0);
+        transform: translateY(0px);
     }
 
     100% {
-        transform: translateY(0);
+        transform: translateY(0px);
     }
 }
 </style>

@@ -15,10 +15,13 @@
     --bubble-left-position: calc(var(--island-left-position) + var(--island-width) + var(--island-bubble-spacing));
     
     --island-bubble-spacing: 30px;
-    --island-bubble-width: calc(var(--island-width) + var(--island-bubble-spacing) + var(--bubble-diameter))
+    --island-bubble-width: calc(var(--island-width) + var(--island-bubble-spacing) + var(--bubble-diameter));
 
     --portfolio-height: 90vh;
-    --portfolio-width: 90vw;
+    --portfolio-width: 900px;
+
+    --portfolio-top-position: calc(50vh - var(--portfolio-height) / 2);
+    --portfolio-left-position: calc(50vw - var(--portfolio-width) / 2);
 
     --transition-standard: 0.4s;
     --animation-standard: 0.8s;
