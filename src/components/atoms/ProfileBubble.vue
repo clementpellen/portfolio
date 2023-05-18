@@ -31,7 +31,6 @@ export default defineComponent({
                 if (this.inIsland === true) {
                     setTimeout(() => {
                         this.visible = false;
-                        console.log('not visible');
                     }, 1000);
                 }
                 else {
@@ -50,8 +49,9 @@ export default defineComponent({
     height: var(--bubble-diameter);
 
     transition:
-        transform var(--transition-standard) ease-in-out;
-    // transform 1s ease-in-out;
+        all var(--transition-standard) ease-in-out,
+        scale 1s ease-in-out,
+        transform 1s ease-in-out;
 
     cursor: pointer;
 }
@@ -72,6 +72,7 @@ export default defineComponent({
 }
 
 .go-in-island {
+    scale: 0.6;
     transform: translateX(-100px);
 }
 
