@@ -11,12 +11,9 @@
     <div class="home-page">
         <GooeyFilter />
         <main class="main-position" :class="{ 'gooey-filter': !openPortfolio && !dynamicIslandImpact }">
-            <DynamicIsland :impact="dynamicIslandImpact" @click="clickIsland()" />
-            <!-- <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolio = true" /> -->
-            <ProfileBubble :inIsland="islandClick" />
-            <!-- <ProfileBubble :goInIsland="portfolioOpened || dynamicIslandImpact" /> -->
+            <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolioWindow()" />
+            <ProfileBubble :inIsland="bubbleInIsland" @click="openPortfolioWindow()" />
         </main>
-        <button class="test" @click="clickButton()">test</button>
         <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
             @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" />
         <img src="@/assets/img/apple-screen.jpg" class="background" :class="{ 'blur': openPortfolio }" />
@@ -43,8 +40,7 @@ export default defineComponent({
             openPortfolio: false,
             dynamicIslandImpact: false,
             portfolioOpened: false,
-            islandClick: false,
-            buttonClick: false
+            bubbleInIsland: false,
         }
     },
     methods: {
@@ -53,6 +49,7 @@ export default defineComponent({
                 this.dynamicIslandImpact = true;
                 setTimeout(() => {
                     this.dynamicIslandImpact = false;
+                    this.bubbleInIsland = false;
                 }, 800 * 2);
             }, 700);
         },
@@ -60,18 +57,12 @@ export default defineComponent({
             this.openPortfolio = false;
             this.portfolioOpened = false;
         },
-        clickIsland() {
-            this.islandClick = true;
-            // setTimeout(() => {
-            //     this.islandClick = false;
-            // }, 1000);
+        openPortfolioWindow() {
+            this.bubbleInIsland = true;
+            setTimeout(() => {
+                this.openPortfolio = true;
+            }, 400);
         },
-        clickButton() {
-            this.islandClick = false;
-            // setTimeout(() => {
-            //     this.buttonClick = false;
-            // }, 1000);
-        }
     },
 });
 </script>
