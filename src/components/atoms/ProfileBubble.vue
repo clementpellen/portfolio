@@ -1,6 +1,6 @@
 <template>
-    <div class="profile-bubble profile-bubble-position flex-center radius" @click="bubbleClick = true"
-        :class="{ 'go-in-island': goInIsland || bubbleClick, 'leave-island': !goInIsland && !bubbleClick }">
+    <div class="profile-bubble profile-bubble-position flex-center radius"
+        :class="{ 'go-in-island': inIsland, 'hidden': !visible }">
         <Profile__SvgVue />
     </div>
 </template>
@@ -16,15 +16,30 @@ export default defineComponent({
     },
     data() {
         return {
-            bubbleClick: false
+            visible: true
         }
     },
     props: {
-        goInIsland: {
+        inIsland: {
             type: Boolean,
             default: false
-        }
+        },
     },
+    watch: {
+        inIsland: {
+            handler() {
+                if (this.inIsland === true) {
+                    setTimeout(() => {
+                        this.visible = false;
+                        console.log('not visible');
+                    }, 1000);
+                }
+                else {
+                    this.visible = true;
+                }
+            }
+        },
+    }
 });
 </script>
 
@@ -35,8 +50,8 @@ export default defineComponent({
     height: var(--bubble-diameter);
 
     transition:
-        // transform var(--transition-standard) ease-in-out,
-        transform 1s ease-in-out;
+        transform var(--transition-standard) ease-in-out;
+    // transform 1s ease-in-out;
 
     cursor: pointer;
 }
@@ -52,10 +67,15 @@ export default defineComponent({
 .profile-bubble:hover {
     height: calc(var(--bubble-diameter) * 1.2);
     width: calc(var(--bubble-diameter) * 1.2);
-    transform: translateX(calc(var(--bubble-diameter) * (-0.1))) translateY(calc(var(--bubble-diameter) * (-0.1)));
+    top: calc(var(--bubble-top-position) - var(--bubble-diameter) * 0.1);
+    left: calc(var(--bubble-left-position) - var(--bubble-diameter) * 0.1);
 }
 
 .go-in-island {
     transform: translateX(-100px);
+}
+
+.hidden {
+    visibility: hidden;
 }
 </style>

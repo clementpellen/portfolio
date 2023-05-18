@@ -11,9 +11,12 @@
     <div class="home-page">
         <GooeyFilter />
         <main class="main-position" :class="{ 'gooey-filter': !openPortfolio && !dynamicIslandImpact }">
-            <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolio = true" />
-            <ProfileBubble :goInIsland="portfolioOpened || dynamicIslandImpact" />
+            <DynamicIsland :impact="dynamicIslandImpact" @click="clickIsland()" />
+            <!-- <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolio = true" /> -->
+            <ProfileBubble :inIsland="islandClick" />
+            <!-- <ProfileBubble :goInIsland="portfolioOpened || dynamicIslandImpact" /> -->
         </main>
+        <button class="test" @click="clickButton()">test</button>
         <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
             @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" />
         <img src="@/assets/img/apple-screen.jpg" class="background" :class="{ 'blur': openPortfolio }" />
@@ -40,6 +43,8 @@ export default defineComponent({
             openPortfolio: false,
             dynamicIslandImpact: false,
             portfolioOpened: false,
+            islandClick: false,
+            buttonClick: false
         }
     },
     methods: {
@@ -54,6 +59,18 @@ export default defineComponent({
         PortfolioClosed() {
             this.openPortfolio = false;
             this.portfolioOpened = false;
+        },
+        clickIsland() {
+            this.islandClick = true;
+            // setTimeout(() => {
+            //     this.islandClick = false;
+            // }, 1000);
+        },
+        clickButton() {
+            this.islandClick = false;
+            // setTimeout(() => {
+            //     this.buttonClick = false;
+            // }, 1000);
         }
     },
 });
