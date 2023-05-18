@@ -12,7 +12,7 @@
         <GooeyFilter />
         <main class="main-position" :class="{ 'gooey-filter': !openPortfolio && !dynamicIslandImpact }">
             <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolioWindow()" />
-            <ProfileBubble :inIsland="bubbleInIsland" @click="openPortfolioWindow()" />
+            <ProfileBubble :inIsland="bubbleInIsland" @click="openProfileWindow()" />
         </main>
         <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
             @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" />
@@ -58,10 +58,16 @@ export default defineComponent({
             this.portfolioOpened = false;
         },
         openPortfolioWindow() {
+            this.openPortfolio = true;
+            setTimeout(() => {
+                this.bubbleInIsland = true;
+            }, 800);
+        },
+        openProfileWindow() {
             this.bubbleInIsland = true;
             setTimeout(() => {
                 this.openPortfolio = true;
-            }, 400);
+            }, 800);
         },
     },
 });
