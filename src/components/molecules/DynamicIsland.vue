@@ -32,7 +32,7 @@ export default defineComponent({
             this.click = true;
             setTimeout(() => {
                 this.click = false;
-            }, 400 * 2);
+            }, this.$settings.animation_standard_speed);
             this.indication = false;
         }
     },
@@ -48,7 +48,7 @@ export default defineComponent({
     cursor: pointer;
 
     transition:
-        all var(--transition-standard) ease-in-out;
+        all calc(var(--animation-standard) / 2) ease-in-out;
 
     .icon.move {
         animation: move 30s 2s infinite;

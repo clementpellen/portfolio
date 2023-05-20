@@ -49,9 +49,9 @@ export default defineComponent({
     height: var(--bubble-diameter);
 
     transition:
-        all var(--transition-standard) ease-in-out,
-        scale 1s ease-in-out,
-        transform 1s ease-in-out;
+        all calc(var(--animation-standard) / 2) ease-in-out,
+        scale var(--animation-standard) ease-in-out,
+        transform var(--animation-standard) ease-in-out;
 
     cursor: pointer;
 }

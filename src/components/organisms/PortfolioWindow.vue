@@ -36,7 +36,7 @@ export default defineComponent({
             this.$emit('close-portfolio');
             setTimeout(() => {
                 this.$emit('portfolio-closed');
-            }, 400 * 2);
+            }, this.$settings.animation_standard_speed);
         },
         getBodyClick() {
             const body = document.querySelector('body');
@@ -54,7 +54,7 @@ export default defineComponent({
         setTimeout(() => {
             this.open = false;
             this.$emit('portfolio-opened');
-        }, 800);
+        }, this.$settings.animation_standard_speed);
     },
     mounted() {
         this.getBodyClick();

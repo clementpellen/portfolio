@@ -50,8 +50,8 @@ export default defineComponent({
                 setTimeout(() => {
                     this.dynamicIslandImpact = false;
                     this.bubbleInIsland = false;
-                }, 800 * 2);
-            }, 700);
+                }, this.$settings.animation_standard_speed * 2);
+            }, this.$settings.animation_standard_speed);
         },
         PortfolioClosed() {
             this.openPortfolio = false;
@@ -61,13 +61,13 @@ export default defineComponent({
             this.openPortfolio = true;
             setTimeout(() => {
                 this.bubbleInIsland = true;
-            }, 800);
+            }, this.$settings.animation_standard_speed);
         },
         openProfileWindow() {
             this.bubbleInIsland = true;
             setTimeout(() => {
                 this.openPortfolio = true;
-            }, 800);
+            }, this.$settings.animation_standard_speed);
         },
     },
 });
