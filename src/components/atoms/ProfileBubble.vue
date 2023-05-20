@@ -31,7 +31,7 @@ export default defineComponent({
                 if (this.inIsland === true) {
                     setTimeout(() => {
                         this.visible = false;
-                    }, 1000);
+                    }, this.$settings.animation_standard_speed / 2);
                 }
                 else {
                     this.visible = true;
