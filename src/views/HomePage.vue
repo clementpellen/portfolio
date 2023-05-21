@@ -11,8 +11,8 @@
     <div class="home-page">
         <GooeyFilter />
         <main class="main-position" :class="{ 'gooey-filter': !openPortfolio && !dynamicIslandImpact }">
-            <DynamicIsland :impact="dynamicIslandImpact" @click="openPortfolioWindow()" />
-            <ProfileBubble :inIsland="bubbleInIsland" @click="openProfileWindow()" />
+            <DynamicIsland :impact="dynamicIslandImpact" @click="openWindow('portfolio')" />
+            <ProfileBubble :inIsland="bubbleInIsland" @click="openWindow('profile')" />
         </main>
         <PortfolioWindow v-if="openPortfolio" @portfolio-opened="portfolioOpened = true"
             @close-portfolio="launchDynamicIslandImpact()" @portfolio-closed="PortfolioClosed()" />
@@ -44,31 +44,35 @@ export default defineComponent({
         }
     },
     methods: {
-        launchDynamicIslandImpact() {
-            setTimeout(() => {
-                this.dynamicIslandImpact = true;
-                setTimeout(() => {
-                    this.dynamicIslandImpact = false;
-                    this.bubbleInIsland = false;
-                }, this.$settings.animation_standard_speed * 2);
-            }, this.$settings.animation_standard_speed);
+        async launchDynamicIslandImpact() {
+            await new Promise(resolve => setTimeout(resolve, this.$settings.animation_standard_speed));
+            this.dynamicIslandImpact = true;
+
+            await new Promise(resolve => setTimeout(resolve, this.$settings.animation_standard_speed * 2));
+            this.dynamicIslandImpact = false;
+            this.bubbleInIsland = false;
         },
         PortfolioClosed() {
             this.openPortfolio = false;
             this.portfolioOpened = false;
         },
-        openPortfolioWindow() {
-            this.openPortfolio = true;
+        openWindow(window) {
+            let firstAction, secondAction;
+
+            if (window === "portfolio") {
+                firstAction = "openPortfolio";
+                secondAction = "bubbleInIsland";
+            } else if (window === "profile") {
+                firstAction = "bubbleInIsland";
+                secondAction = "openPortfolio";
+            }
+
+            this[firstAction] = true;
+
             setTimeout(() => {
-                this.bubbleInIsland = true;
+                this[secondAction] = true;
             }, this.$settings.animation_standard_speed);
-        },
-        openProfileWindow() {
-            this.bubbleInIsland = true;
-            setTimeout(() => {
-                this.openPortfolio = true;
-            }, this.$settings.animation_standard_speed);
-        },
+        }
     },
 });
 </script>
