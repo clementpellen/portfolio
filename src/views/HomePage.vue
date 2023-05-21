@@ -1,12 +1,3 @@
-<!-- TODO:
-            - Cleaning css positions of gooey filter ✅
-            - Cleaning css positions of DynamicIsland.vue ✅
-            - Cleaning css positions of PortfolioWindow.vue ✅
-            - Cleaning css animations ✅
-            - Cleaning html + js in HomePage.vue
-            - Check responsive portfoliowindow
--->
-
 <template>
     <div class="home-page">
         <GooeyFilter />

@@ -69,7 +69,7 @@ export default defineComponent({
     height: var(--portfolio-height);
     overflow: hidden;
     width: var(--portfolio-width);
-    max-width: 900px;
+    max-width: var(--portfolio-width);
     padding: 15px 30px 30px 30px;
     gap: 20px;
 
@@ -128,8 +128,12 @@ export default defineComponent({
 }
 
 @media (max-width: 1000px) {
-    .portfolio-window-position {
+    .portfolio-window {
         --portfolio-width: 90vw;
+    }
+
+    .portfolio-window-position {
+        --portfolio-left-position: calc(50vw - var(--portfolio-width) / 2);
     }
 }
 </style>
