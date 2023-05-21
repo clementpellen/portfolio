@@ -36,7 +36,7 @@ export default defineComponent({
             this.$emit('close-portfolio');
             setTimeout(() => {
                 this.$emit('portfolio-closed');
-            }, 400 * 2);
+            }, this.$settings.animation_standard_speed);
         },
         getBodyClick() {
             const body = document.querySelector('body');
@@ -54,7 +54,7 @@ export default defineComponent({
         setTimeout(() => {
             this.open = false;
             this.$emit('portfolio-opened');
-        }, 800);
+        }, this.$settings.animation_standard_speed);
     },
     mounted() {
         this.getBodyClick();
@@ -66,10 +66,10 @@ export default defineComponent({
 .portfolio-window {
     background-color: var(--main-dark);
     box-sizing: border-box;
-    width: var(--portfolio-width);
-    max-width: 900px;
     height: var(--portfolio-height);
     overflow: hidden;
+    width: var(--portfolio-width);
+    max-width: var(--portfolio-width);
     padding: 15px 30px 30px 30px;
     gap: 20px;
 
@@ -88,7 +88,8 @@ export default defineComponent({
 
 .portfolio-window-position {
     position: absolute;
-    top: calc(50vh - var(--portfolio-height) / 2);
+    top: var(--portfolio-top-position);
+    left: var(--portfolio-left-position);
     z-index: 3;
 }
 
@@ -102,67 +103,37 @@ export default defineComponent({
 
 @keyframes close {
     0% {
-        width: 90vw;
-        height: 90vh;
-        top: calc(50vh - var(--portfolio-height) / 2);
-        left: calc(50vw - var(--portfolio-width) / 2);
+        height: var(--portfolio-height);
+        width: var(--portfolio-width);
+        top: var(--portfolio-top-position);
+        left: var(--portfolio-left-position);
         z-index: 3;
     }
 
     50% {
+        height: 35vh;
         width: calc(var(--island-width) * 1.05);
-        height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
-        top: calc(50vh + var(--island-height) + 10px);
-        left: calc(50vw - var(--island-width) / 2);
+        top: calc(50vh + 50px);
+        left: var(--island-left-position);
         z-index: 2;
     }
 
     100% {
         width: calc(var(--island-width) * 1.05);
         height: var(--island-height);
-        top: calc(50vh - var(--island-height) / 2);
-        left: calc(50vw - var(--island-width) / 2);
+        top: var(--island-top-position);
+        left: var(--island-left-position);
         z-index: 1;
     }
 }
 
 @media (max-width: 1000px) {
-    .portfolio-window-position {
-        position: absolute;
-        left: calc(50vw - var(--portfolio-width) / 2);
-    }
-}
-
-@media (min-width: 1000px) {
-    .portfolio-window-position {
-        position: absolute;
-        left: calc(50vw - 900px / 2);
+    .portfolio-window {
+        --portfolio-width: 90vw;
     }
 
-    @keyframes close {
-        0% {
-            width: 900px;
-            height: 90vh;
-            top: calc(50vh - var(--portfolio-height) / 2);
-            left: calc(50vw - 900px / 2);
-            z-index: 3;
-        }
-
-        50% {
-            width: calc(var(--island-width) * 1.05);
-            height: calc(var(--portfolio-height) - 50vh - var(--island-height) - 10px);
-            top: calc(50vh + var(--island-height) + 10px);
-            left: calc(50vw - var(--island-width) / 2);
-            z-index: 2;
-        }
-
-        100% {
-            width: calc(var(--island-width) * 1.05);
-            height: var(--island-height);
-            top: calc(50vh - var(--island-height) / 2);
-            left: calc(50vw - var(--island-width) / 2);
-            z-index: 1;
-        }
+    .portfolio-window-position {
+        --portfolio-left-position: calc(50vw - var(--portfolio-width) / 2);
     }
 }
 </style>

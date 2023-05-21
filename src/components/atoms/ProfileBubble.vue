@@ -1,6 +1,6 @@
 <template>
-    <div class="profile-bubble profile-bubble-position flex-center radius" @click="bubbleClick = true"
-        :class="{ 'go-in-island': goInIsland || bubbleClick, 'leave-island': !goInIsland && !bubbleClick }">
+    <div class="profile-bubble profile-bubble-position flex-center radius"
+        :class="{ 'go-in-island': inIsland, 'hidden': !visible }">
         <Profile__SvgVue />
     </div>
 </template>
@@ -16,50 +16,67 @@ export default defineComponent({
     },
     data() {
         return {
-            bubbleClick: false
+            visible: true
         }
     },
     props: {
-        goInIsland: {
+        inIsland: {
             type: Boolean,
             default: false
-        }
+        },
     },
+    watch: {
+        inIsland: {
+            handler() {
+                if (this.inIsland === true) {
+                    setTimeout(() => {
+                        this.visible = false;
+                    }, this.$settings.animation_standard_speed / 2);
+                }
+                else {
+                    this.visible = true;
+                }
+            }
+        },
+    }
 });
 </script>
 
 <style scoped lang="scss">
 .profile-bubble {
     background-color: var(--main-dark);
-    width: var(--island-height);
-    height: var(--island-height);
+    width: var(--bubble-diameter);
+    height: var(--bubble-diameter);
 
     transition:
-        width var(--transition-standard) ease-in-out,
-        height var(--transition-standard) ease-in-out,
-        top var(--transition-standard) ease-in-out,
-        left var(--transition-standard) ease-in-out,
-        transform 1s ease-in-out;
+        all calc(var(--animation-standard) / 2) ease-in-out,
+        scale var(--animation-standard) ease-in-out,
+        transform var(--animation-standard) ease-in-out;
 
     cursor: pointer;
 }
 
 .profile-bubble-position {
     position: absolute;
-    top: calc(50vh - var(--island-height) / 2);
-    left: calc(50vw + var(--island-width) / 2 + 30px);
+    top: var(--bubble-top-position);
+    left: var(--bubble-left-position);
 
     z-index: 1;
 }
 
 .profile-bubble:hover {
-    height: calc(var(--island-height) * 1.2);
-    width: calc(var(--island-height) * 1.2);
-    top: calc(50vh - (var(--island-height) * 1.2) / 2);
-    left: calc(50vw + var(--island-width) / 2 + 30px - (var(--island-height) * 1.2 - var(--island-height)) / 2);
+    height: calc(var(--bubble-diameter) * 1.2);
+    width: calc(var(--bubble-diameter) * 1.2);
+    top: calc(var(--bubble-top-position) - var(--bubble-diameter) * 0.1);
+    left: calc(var(--bubble-left-position) - var(--bubble-diameter) * 0.1);
 }
 
 .go-in-island {
+    scale: 0.6;
     transform: translateX(-100px);
+}
+
+.hidden {
+    visibility: hidden;
 }
 </style>
